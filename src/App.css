@@ -15,7 +15,46 @@ body {
   background: #ffff00;
   color: #0000ff;
   font-family: Arial;
-  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMCIgZmlsbD0iYmxhY2siLz48L3N2Zz4='),
-    auto;/*Importing a custom cursor*/
+  font-size: 12px;
+  line-height: 16px;
+  cursor: none;
+
 }
 
+.custom-cursor {
+  position: fixed;
+  width: 15px;
+  height: 15px;
+  background-color: blue;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+}
+
+p {
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+}
+
+h1 {
+  font-weight: 100;
+  font-size: 2rem;
+  line-height: 1.8rem;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+h4 {
+  font-weight:100;
+  font-size: 0.6rem;
+  line-height: 0.6rem;
+  font-family: monospace;
+}
+a {
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+  background-color: cyan;
+  transition: 0.5s;
+}

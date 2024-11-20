@@ -1,0 +1,91 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  z-index: 50;
+}
+
+.popup-content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+    padding: 1em;
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: blue;
+  text-transform: uppercase;
+}
+.popup-content img {
+ width: 100%;
+ height: auto;
+}
+.left-column,
+.right-column {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+}
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding-right: 1em;
+}
+.artist-header {
+  padding-left: 1em;
+}
+.artwork-gallery img {
+  width: 100%;
+
+}
+.full-page-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.full-page-image img {
+  max-width: 90%;
+  max-height: calc(100% - 1em);
+}
+
+@media screen and (max-width: 768px) {
+  .popup-content {
+    display: block;
+    overflow: auto;
+    
+  }
+  .left-column {
+    width: 50%;
+    height: 30%;
+  }
+  .right-column {
+    padding-right: 0;
+  
+    /* height: fit-content; */
+  }
+}

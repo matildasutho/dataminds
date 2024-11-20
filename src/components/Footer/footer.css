@@ -1,0 +1,10 @@
+/* Footer.css */
+.footer {
+  position: fixed;
+  height: fit-content;
+  bottom: 0px;
+  width: 100%;
+  z-index: 30;
+  text-align: right;
+  padding: 0em 1em;
+}
