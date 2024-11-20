@@ -17,11 +17,14 @@ body {
   font-family: Arial;
   font-size: 12px;
   line-height: 16px;
-  cursor: none;
+
 
 }
+canvas {
+  cursor: grab;
+}
 
-.custom-cursor {
+/* .custom-cursor {
   position: fixed;
   width: 15px;
   height: 15px;
@@ -30,7 +33,7 @@ body {
   pointer-events: none;
   z-index: 100;
   transform: translate(-50%, -50%);
-}
+} */
 
 p {
   font-size: 0.8rem;
@@ -56,5 +59,4 @@ a {
 a:hover {
   text-decoration: none;
   background-color: cyan;
-  transition: 0.5s;
 }

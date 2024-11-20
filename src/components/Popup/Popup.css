@@ -18,7 +18,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: row;
-    padding: 1em;
+  padding: 0em 1em;
 }
 
 .popup-close {
@@ -45,8 +45,17 @@
 .left-column {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.5em;
   padding-right: 1em;
+  padding-bottom: 6em;
+}
+.right-column p {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    width: 90%;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 6em;
 }
 .artist-header {
   padding-left: 1em;
@@ -54,6 +63,12 @@
 .artwork-gallery img {
   width: 100%;
 
+}
+.artwork-gallery img:hover {
+  /* box-shadow: 3px 3px 3px rgba(0, 0, 255, 0.8); */
+  /* transform: translateY(3px), translateX(-3px); */
+  /* transition: 0.1s; */
+  filter: blur(2px);
 }
 .full-page-image {
   position: fixed;

@@ -20,10 +20,15 @@ function TitleWithBaubles({ modelPath, children }) {
           key={index}
           geometry={child.geometry}
           material={child.material}
-          scale={(2.4, 2.4, 2.4)}
+          scale={(1.8, 1.8, 1.8)}
+          position={[0, 0, 0.75]}
         />
       ))}
       {children}
+      <mesh>
+        <sphereGeometry args={[0.5, 16, 16]} />
+        <meshStandardMaterial color="cyan" metalness={0.48} roughness={0.4} />
+      </mesh>
     </group>
   );
 }
