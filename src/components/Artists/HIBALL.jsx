@@ -3,18 +3,18 @@ import Node from "../../Node";
 
 // Import all images from the respective directories using import.meta.glob
 const artwork1 = import.meta.glob(
-  "../../assets/HIBALL/Composition_for_Mnemosyne/*.{png,jpg,jpeg,svg}"
+  "./assets/HIBALL/Composition_for_Mnemosyne/*.{png,jpg,jpeg,svg}"
 );
 
 const artworks = [
   {
     name: "Composition for Mnemosyne",
     images: Object.values(artwork1),
-    text: "Text for Artwork 1",
+    text: "HIBALL, <em>Composition for Mnemosyne</em>, 2024.<br>Two-channel 2k video, stereo sound. 7:24 min",
   },
 ];
 
-function RoyAnanda({ onNodeClick, position, rotate }) {
+function HIBALL({ onNodeClick, position, rotate }) {
   const [loadedArtworks, setLoadedArtworks] = useState([]);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ function RoyAnanda({ onNodeClick, position, rotate }) {
           content: (
             <div>
               <img
-                src="../../assets/Roy_Ananda/Evidence_Wall/HIBALL_Evidence-Wall_crop-1.jpg"
+                src="./assets/HIBALL/Evidence_Wall/HIBALL_Evidence-Wall_crop-1.jpg"
                 alt="HIBALL"
               />
               <p
@@ -68,17 +68,15 @@ Helmed by Alexandra Kirwood and Stanton Cornish-Ward, HIBALL has built a reputat
  <a href="https://hiball.tv/" target="_blank">https://hiball.tv/</a>
 
 
-<br/><br/>
+<br/>
 <a href="https://www.instagram.com/_hiball_/" target="_blank">@_hiball_</a>
 
 
-<br/><br/>
 
-<br/><br/>
 
 <h2>Stanton Cornish-Ward</h2>
 
-<br/><br/>
+
 
 Stanton Cornish-Ward is an artist and filmmaker based in Naarm Melbourne, from Boorlo Perth. Her work explores the nuances of memory, intergenerational trauma, and the human impact of advancing technologies. Recent exhibitions include the National Gallery of Victoria, Naarm Melbourne (2023); Palazzo San Giuseppe, Polignano a Mare Italy (2022); Discorda Gallery, Naarm Melbourne (2021); Metro Arts, Meanjin Brisbane (2020), and MARS Gallery, Naarm Melbourne (2019). Cornish-Ward’s collaborative films *LOCK* (2021) and *In a World Full of Angels* (2022) were awarded Best Experimental Film at the Cologne International Film Festival 2022 and Experimental Forum International Film and Video Art Festival L.A 2023. Cornish-Ward teaches ‘Art & Film’ at Monash University.
 
@@ -86,30 +84,26 @@ Stanton Cornish-Ward is an artist and filmmaker based in Naarm Melbourne, from B
  <a href="https://www.stantoncornishward.com/" target="_blank">https://www.stantoncornishward.com/</a>
 
 
-<br/><br/>
+<br/>
 <a href="https://www.instagram.com/stntn/" target="_blank">@stntn</a>
 
 
-<br/><br/>
-
-<br/><br/>
 
 <h2>Alexandra Kirwood</h2>
 
-<br/><br/>
+
 
 Alexandra Kirwood is a researcher and image-maker and a former Researcher in Residence at ACMI X. Her creative practice research explores relationships between bodies and images in the context of art, fashion, performance, and digital technologies. She aims to question image consumption, the role of new technology, and digital representations of bodies to uncover the social implications of image-making. She recently completed a Master in Design at RMIT titled  'Time-Images and Digital Fashion Sculpture', from which she graduated with high distinction. She has worked with architectural firms OCTA and Grimshaw Architects to create large-scale site-specific public video works, including *Significant Surfaces* (2022) and *Floating Bodies* (2021). Currently, Alexandra is a sessional lecturer and course coordinator at RMIT in the Bachelor of Fashion (Design).
 
-<br/><br/>
+
 
 <br/><br/>
  <a href="https://www.alexandrakirwood.com/" target="_blank">https://www.alexandrakirwood.com/</a>
 
 
-<br/><br/>
+<br/>
 <a href="https://www.instagram.com/alexandrakirwood/" target="_blank">@alexandrakirwood</a>
 
-<br/><br/>
                     `,
                 }}
               />
@@ -137,22 +131,25 @@ Alexandra Kirwood is a researcher and image-maker and a former Researcher in Res
                 <p
                   dangerouslySetInnerHTML={{
                     __html: `
-                      HIBALL's contribution to <i>DATA MINDS</i> connects over four hundred fictional automatons, robots, and artificial intelligences from a wide range of pop-cultural and mythological sources, positing them as agents in a vast conspiracy against the human race. <i>Evidence wall</i> owes a great debt to the meta-fictional tradition perhaps best exemplified by Alan Moore and Kevin O'Neill's <i>The League of Extraordinary Gentlemen</i> (1999-2019), in which a dizzying array of characters from a wide spectrum of literary sources exist in a shared fictional universe.
-                      <br />
-                      <br />
-                      While <i>Evidence wall's</i> default interface offers users a wandering lens across an analogue conspiracy wall, a more interactive mode can be activated by clicking and dragging any given portion of the image. This allows for a more curious observer to follow specific chains of association between the AI's and become more deeply acquainted with sets of artist-determined overlapping taxonomies.
-                      <br />
-                      <br />
-                      In some instances, AI's have been grouped according to their capacity to exhibit typically human traits, such as artistry, sadism, megalomania or romantic infatuation. Elsewhere, they are grouped according to Myer-Briggs Type Indicator personality traits or in their adherence to supposed safeguards, such as Isaac Asimov's 'Three Laws of Robotics'.
-                      <br />
-                      <br />
-                      The belligerently analogue approach to mapping these connections-pins, thread, index cards and images reminiscent of Polaroid photography-is intended as something of a foil to the tech-minded subject matter. It perhaps suggests yet another fictional character, the conspiracy theorist himself-a tinfoil-hat-wearing Luddite making a last futile stand against the coming of the machines.
-                      <br />
-                      <br />
-                      This work was originally commissioned by <i>Artlink's</i> , <i>After AI</i>. Issue 43:2 | Wirltuti / Spring 2023
-                      <br />
-                      <br />
-                      <a href="https://www.artlink.com.au/articles/3432/evidence-wall/" target="_blank">Click here</a> to view this work's original iteration, developed with photographer Sam Roberts and web developer Tom Crisp.
+                      <em>Composition for Mnemosyne</em> consists of a two-channel video artwork accompanied by five wall works, made in response to the artists’ time in Newcastle as part of The Lock-Up’s Artist in Residence program. Reflecting the artists’ own observations on shifting synthetic media as well as the ambient technological infrastructure of Newcastle, the works examine the complex and often uneasy relationship between human experience and increasingly pervasive AI driven systems, often rendered invisible. Avoiding a didactic approach, the series of works invites viewers to consider their own entanglement with rapidly advancing technology.
+
+<br /><br />
+
+The first video channel features The Hunter Singers, a Newcastle youth choir directed by Kim Sutherland OAM and conducted by Charissa Ferguson, performing an AI-assisted score by long-time collaborator of the artists, Mitchell Mackintosh. Using their voice and hands they emulate synthetic sounds into a choral performance, exploring the way new technology is not only reshaping the visual landscape but becoming an embodied and mediated presence in the human body.
+
+<br /><br />
+
+The second channel juxtaposes the choir's performance with scenes of a group of teenagers navigating Newcastle’s shifting technological landscape. These spaces— decaying WWII gun encampments, abandoned barracks, and the stark presence of a fighter jet museum adjacent to Australia’s primary F-35 training base— reflect cycles of progress intertwined with military influence. The F-35s, equipped with advanced AI-driven systems—a key advantage since the 2010s—train every weekday, looping over Newcastle’s sky. With each step forward, the perception of the environment is reprogrammed, shaped by both the visible physical infrastructure and the invisible networks that redefine these spaces for each generation.
+
+<br /><br />
+
+The wall works extend these themes by merging real and synthetic imagery. Three works incorporate UV printed imagery on steel, their surfaces either burnt by homemade explosives, or scratched to leave behind tags, both motifs in the film. Two additional lenticular works, composed entirely of synthetic imagery, depict a hypothetical, disembodied perspective that merges human vision with machine-driven overlays, offering an augmented view from both the ground and the sky.
+
+<br /><br />
+
+<em>This project has been assisted by the Australian Government through Creative Australia, its principal arts investment and advisory body; the Victorian Government through Creative Victoria; and The Lock-Up’s Artist in Residence program.</em>
+
+<br /><br />
                     `,
                   }}
                 />
@@ -197,4 +194,4 @@ Alexandra Kirwood is a researcher and image-maker and a former Researcher in Res
   );
 }
 
-export default RoyAnanda;
+export default HIBALL;

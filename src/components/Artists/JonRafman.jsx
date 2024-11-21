@@ -3,13 +3,13 @@ import Node from "../../Node";
 
 // Import all images from the respective directories using import.meta.glob
 const artwork1 = import.meta.glob(
-  "../../assets/Jon_Rafman/Panic/*.{png,jpg,jpeg,svg}"
+  "./assets/Jon_Rafman/Panic/*.{png,jpg,jpeg,svg}"
 );
 const artwork2 = import.meta.glob(
-  "../../assets/Jon_Rafman/Punctured_Sky/*.{png,jpg,jpeg,svg}"
+  "./assets/Jon_Rafman/Punctured_Sky/*.{png,jpg,jpeg,svg}"
 );
 const artwork3 = import.meta.glob(
-  "../../assets/Jon_Rafman/Riot_In_The_Mall_Parking_Lot/*.{png,jpg,jpeg,svg}"
+  "./assets/Jon_Rafman/Riot_In_The_Mall_Parking_Lot/*.{png,jpg,jpeg,svg}"
 );
 
 const artworks = [
@@ -21,12 +21,12 @@ const artworks = [
   {
     name: "Punctured Sky",
     images: Object.values(artwork2),
-    text: "Jon Rafman, <em>Punctured Sky</em>, 2021. 4K video, stereo sound, 21:09 min.<br>© Jon Rafman 2024<br>Courtesy the artist, Neon Parc and Sprüth Magers",
+    text: "Jon Rafman, <em>Punctured Sky</em>, 2021. 4K video, stereo sound, 21:09 min.<br><br>© Jon Rafman 2024<br>Courtesy the artist, Neon Parc and Sprüth Magers",
   },
   {
     name: "Riot In The Mall Parking Lot",
     images: Object.values(artwork3),
-    text: "Text for Riot In The Mall Parking Lot",
+    text: "Jon Rafman, <em>𐤌𐤄𐤅𐤌𐤄𐤟𐤁𐤇𐤍𐤉𐤅𐤍𐤟𐤄𐤒𐤍𐤉𐤅𐤍 (Riot in the Mall Parking Lot)</em>, 2023. <br>Inkjet print and acrylic on canvas, 187 x 135 cm<br><br>© Jon Rafman 2024<br>Courtesy the artist, Neon Parc and Sprüth Magers",
   },
 ];
 

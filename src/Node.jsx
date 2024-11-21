@@ -1,5 +1,4 @@
-import React from "react";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { RigidBody, BallCollider } from "@react-three/rapier";
 import { Text, Line } from "@react-three/drei";
@@ -10,12 +9,12 @@ function Node({
   children,
   scale = [1, 1, 1],
   onClick,
-  isRandomView,
+  rotate = true,
 }) {
   const ref = useRef();
 
   useFrame(() => {
-    if (ref.current) {
+    if (ref.current && rotate) {
       ref.current.rotation.y += 0.001;
     }
   });
