@@ -73,7 +73,7 @@ function MindMap({ onNodeClick, isRandomView }) {
 
   return (
     <group>
-      <TitleWithBaubles modelPath="title_dm.gltf">
+      <TitleWithBaubles modelPath="/title_dm.gltf">
         {positions.map((position, index) => (
           <group key={index}>
             <Line

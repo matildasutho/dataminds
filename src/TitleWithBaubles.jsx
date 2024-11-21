@@ -9,7 +9,7 @@ function TitleWithBaubles({ modelPath, children }) {
 
   useFrame((state, delta) => {
     if (modelRef.current) {
-      //   modelRef.current.rotation.y += delta;
+      // modelRef.current.rotation.y += delta;
     }
   });
 

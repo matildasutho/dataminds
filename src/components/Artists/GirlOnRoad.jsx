@@ -112,7 +112,7 @@ function GirlOnRoad({ onNodeClick, position, rotate }) {
               <div>
                 <img
                   src="../../assets/Girl_On_Road/image1.jpg"
-                  alt="Jon Rafman"
+                  alt="Girl On Road"
                 />
                 <p
                   dangerouslySetInnerHTML={{
@@ -144,7 +144,7 @@ In the heritage listed cells of The Lock-Up, dirt*style* takes over the senses. 
             e.stopPropagation();
             onNodeClick({
               type: "artwork",
-              artistName: "Jon Rafman",
+              artistName: "Girl On Road",
               content: [
                 ...artwork.images.map((image, imgIndex) => (
                   <img

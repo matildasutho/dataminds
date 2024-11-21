@@ -33,8 +33,8 @@
   text-transform: uppercase;
 }
 .popup-content img {
- width: 100%;
- height: auto;
+  width: 100%;
+  height: auto;
 }
 .left-column,
 .right-column {
@@ -50,19 +50,18 @@
   padding-bottom: 6em;
 }
 .right-column p {
-    font-size: 1.2rem;
-    line-height: 1.6rem;
-    width: 90%;
-    margin: 0;
-    padding: 0;
-    padding-bottom: 6em;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  width: 90%;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 6em;
 }
 .artist-header {
   padding-left: 1em;
 }
 .artwork-gallery img {
   width: 100%;
-
 }
 .artwork-gallery img:hover {
   /* box-shadow: 3px 3px 3px rgba(0, 0, 255, 0.8); */
@@ -90,17 +89,19 @@
 
 @media screen and (max-width: 768px) {
   .popup-content {
-    display: block;
-    overflow: auto;
-    
+    flex-direction: column;
+    max-height: 100%;
   }
-  .left-column {
-    width: 50%;
-    height: 30%;
-  }
+
+  .left-column,
   .right-column {
-    padding-right: 0;
-  
-    /* height: fit-content; */
+    width: 100%;
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .artwork-gallery img {
+    width: 100%;
+    height: auto;
   }
 }
