@@ -1,12 +1,7 @@
-import * as THREE from "three";
 import { extend } from "@react-three/fiber";
 import { Line } from "@react-three/drei";
 
-// Extend the THREE namespace to include the Line component
-extend({ Line });
-
 import React, { useState } from "react";
-import Node from "./Node";
 import TitleWithBaubles from "./TitleWithBaubles";
 import RoyAnanda from "./components/Artists/RoyAnanda";
 import GirlOnRoad from "./components/Artists/GirlOnRoad";
@@ -14,6 +9,9 @@ import HIBALL from "./components/Artists/HIBALL";
 import JonRafman from "./components/Artists/JonRafman";
 import BrieTrenerry from "./components/Artists/BrieTrenerry";
 import DataMinds from "./components/Artists/DataMinds";
+
+// Extend the THREE namespace to include the Line component
+extend({ Line });
 
 function MindMap({ onNodeClick, isRandomView }) {
   const titlePosition = [0, 0, 0];
@@ -83,22 +81,46 @@ function MindMap({ onNodeClick, isRandomView }) {
               lineWidth={1}
             />
             {index === 0 && (
-              <RoyAnanda onNodeClick={onNodeClick} position={position} />
+              <RoyAnanda
+                onNodeClick={onNodeClick}
+                position={position}
+                rotate={isRandomView}
+              />
             )}
             {index === 1 && (
-              <GirlOnRoad onNodeClick={onNodeClick} position={position} />
+              <GirlOnRoad
+                onNodeClick={onNodeClick}
+                position={position}
+                rotate={isRandomView}
+              />
             )}
             {index === 2 && (
-              <HIBALL onNodeClick={onNodeClick} position={position} />
+              <HIBALL
+                onNodeClick={onNodeClick}
+                position={position}
+                rotate={isRandomView}
+              />
             )}
             {index === 3 && (
-              <JonRafman onNodeClick={onNodeClick} position={position} />
+              <JonRafman
+                onNodeClick={onNodeClick}
+                position={position}
+                rotate={isRandomView}
+              />
             )}
             {index === 4 && (
-              <BrieTrenerry onNodeClick={onNodeClick} position={position} />
+              <BrieTrenerry
+                onNodeClick={onNodeClick}
+                position={position}
+                rotate={isRandomView}
+              />
             )}
             {index === 5 && (
-              <DataMinds onNodeClick={onNodeClick} position={position} />
+              <DataMinds
+                onNodeClick={onNodeClick}
+                position={position}
+                rotate={isRandomView}
+              />
             )}
           </group>
         ))}

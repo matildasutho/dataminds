@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import Node from "../../Node";
 
 // Import all images from the respective directories using import.meta.glob
@@ -18,7 +19,7 @@ const artworks = [
 
 function RoyAnanda({ onNodeClick, position, rotate }) {
   const [loadedArtworks, setLoadedArtworks] = useState([]);
-  const [pageUrl, setPageURL] = useState(null);
+  const modelRef = useRef();
 
   useEffect(() => {
     const loadImages = async () => {
@@ -39,11 +40,13 @@ function RoyAnanda({ onNodeClick, position, rotate }) {
     loadImages();
   }, []);
 
-  useEffect(() => {
-    setPageURL(window.location.href);
-  }, [window.location]);
+  useFrame((state, delta) => {
+    if (modelRef.current && rotate) {
+      modelRef.current.rotation.y += delta;
+    }
+  });
 
-  const totalNodes = loadedArtworks.length + 1; // Total number of artworks + 1 statement
+  const totalNodes = loadedArtworks.length + 5; // Total number of artworks + 1 statement
   const angleStep = (2 * Math.PI) / totalNodes;
 
   return (

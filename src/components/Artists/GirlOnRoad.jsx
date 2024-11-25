@@ -48,7 +48,7 @@ function GirlOnRoad({ onNodeClick, position, rotate }) {
     loadImages();
   }, []);
 
-  const totalNodes = loadedArtworks.length + 1; // Total number of artworks + 1 statement
+  const totalNodes = loadedArtworks.length + 4; // Total number of artworks + 1 statement
   const angleStep = (2 * Math.PI) / totalNodes;
 
   return (

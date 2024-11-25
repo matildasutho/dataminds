@@ -5,10 +5,15 @@ function Footer({ isRandomView, toggleView }) {
   return (
     <footer className="footer">
       <label className="switch">
-        <input type="checkbox" checked={isRandomView} onChange={toggleView} />
-        <span className="slider"></span>
+        <input
+          type="checkbox"
+          checked={isRandomView}
+          onChange={toggleView}
+          aria-checked={isRandomView}
+          aria-label="Toggle between random view and flat view"
+        />
+        <span className="slider" aria-hidden="true"></span>
       </label>
-      <p>{isRandomView ? "Random View" : "Flat View"}</p>
       <h4>
         © 2024 Wednesday Sutherland. Built by{" "}
         <a

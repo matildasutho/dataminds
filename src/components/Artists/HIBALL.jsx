@@ -38,7 +38,7 @@ function HIBALL({ onNodeClick, position, rotate }) {
     loadImages();
   }, []);
 
-  const totalNodes = loadedArtworks.length + 1; // Total number of artworks + 1 statement
+  const totalNodes = loadedArtworks.length + 2; // Total number of artworks + 1 statement
   const angleStep = (2 * Math.PI) / totalNodes;
 
   return (

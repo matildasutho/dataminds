@@ -12,12 +12,22 @@ function Node({
   rotate = true,
 }) {
   const ref = useRef();
+  const textRef = useRef();
 
-  useFrame(() => {
-    if (ref.current && rotate) {
-      ref.current.rotation.y += 0.001;
-    }
-  });
+  // useFrame(() => {
+  //   if (ref.current) {
+  //     if (rotate) {
+  //       ref.current.rotation.y += 0.001;
+  //     } else {
+  //       ref.current.rotation.y = 0; // Reset rotation to flat position
+  //     }
+  //   }
+  //   if (textRef.current) {
+  //     if (!rotate) {
+  //       textRef.current.rotation.y = 0; // Reset rotation to flat position
+  //     }
+  //   }
+  // });
 
   return (
     <group position={position} ref={ref} scale={scale} onClick={onClick}>
@@ -28,10 +38,11 @@ function Node({
           <meshStandardMaterial color="cyan" metalness={0.48} roughness={0.4} />
         </mesh>
         <Text
-          position={[0, 0.3, 0]}
+          ref={textRef}
+          position={[-0.2, 0.3, 0]}
           fontSize={0.2}
           color="blue"
-          anchorX="center"
+          anchorX="right"
           anchorY="middle"
         >
           {label}
@@ -52,7 +63,7 @@ function Node({
               color="cyan"
               lineWidth={1}
             />
-            {child}
+            {React.cloneElement(child, { rotate })}
           </group>
         ))}
     </group>
