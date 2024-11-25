@@ -13,10 +13,11 @@ import GirlOnRoad from "./components/Artists/GirlOnRoad";
 import HIBALL from "./components/Artists/HIBALL";
 import JonRafman from "./components/Artists/JonRafman";
 import BrieTrenerry from "./components/Artists/BrieTrenerry";
+import DataMinds from "./components/Artists/DataMinds";
 
 function MindMap({ onNodeClick, isRandomView }) {
   const titlePosition = [0, 0, 0];
-  const numArtists = 5;
+  const numArtists = 6;
   const radius = 3.6;
   const minDistance = 2.0; // Minimum distance between artists
   const maxDistance = 5.0; // Maximum distance from the title
@@ -95,6 +96,9 @@ function MindMap({ onNodeClick, isRandomView }) {
             )}
             {index === 4 && (
               <BrieTrenerry onNodeClick={onNodeClick} position={position} />
+            )}
+            {index === 5 && (
+              <DataMinds onNodeClick={onNodeClick} position={position} />
             )}
           </group>
         ))}

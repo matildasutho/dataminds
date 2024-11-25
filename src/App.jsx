@@ -19,16 +19,26 @@ export const App = () => {
   const handleNodeClick = (content) => {
     console.log("Node clicked:", content); // Debug statement
     setPopupContent(content);
+    if (content.pageUrl) {
+      window.history.pushState(null, "", content.pageUrl);
+    }
   };
 
   const handleClosePopup = () => {
     console.log("Popup closed"); // Debug statement
     setPopupContent(null);
+    window.history.pushState(null, "", "/");
   };
 
   const toggleView = () => {
     setIsRandomView((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (popupContent && popupContent.pageUrl) {
+      window.history.pushState(null, "", popupContent.pageUrl);
+    }
+  }, [popupContent]);
 
   return (
     <>

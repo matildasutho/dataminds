@@ -13,7 +13,7 @@
   display: inline-block;
   width: 60px;
   height: 34px;
-  margin: 0 10px;
+  /* margin: 0 10px; */
 }
 
 .switch input {
@@ -29,7 +29,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  border: 3px solid blue;
+  background-color: yellow;
   transition: 0.4s;
   border-radius: 34px;
 }
@@ -37,17 +38,18 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 20px;
+  width: 20px;
   left: 4px;
   bottom: 4px;
   background-color: white;
+  /* border: 1px solid blue; */
   transition: 0.4s;
-  border-radius: 50%;
+  border-radius: 34px;
 }
 
 input:checked + .slider {
-  background-color: #2196f3;
+  background-color: blue;
 }
 
 input:checked + .slider:before {

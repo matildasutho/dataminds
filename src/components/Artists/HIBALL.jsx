@@ -10,7 +10,9 @@ const artworks = [
   {
     name: "Composition for Mnemosyne",
     images: Object.values(artwork1),
-    text: "HIBALL, <em>Composition for Mnemosyne</em>, 2024.<br>Two-channel 2k video, stereo sound. 7:24 min",
+    text: "<em>Composition for Mnemosyne</em><br>2024.<br>Two-channel 2k video, stereo sound. 7:24 min",
+    statement:
+      "<em>Composition for Mnemosyne</em> consists of a two-channel video artwork accompanied by five wall works, made in response to the artists' time in Newcastle as part of The Lock-Up's Artist in Residence program. Reflecting the artists' own observations on shifting synthetic media as well as the ambient technological infrastructure of Newcastle, the works examine the complex and often uneasy relationship between human experience and increasingly pervasive AI driven systems, often rendered invisible. Avoiding a didactic approach, the series of works invites viewers to consider their own entanglement with rapidly advancing technology.<br /><br The first video channel features The Hunter Singers, a Newcastle youth choir directed by Kim Sutherland OAM and conducted by Charissa Ferguson, performing an AI-assisted score by long-time collaborator of the artists, Mitchell Mackintosh. Using their voice and hands they emulate synthetic sounds into a choral performance, exploring the way new technology is not only reshaping the visual landscape but becoming an embodied and mediated presence in the human body.<br /><br />The second channel juxtaposes the choir's performance with scenes of a group of teenagers navigating Newcastle's shifting technological landscape. These spaces— decaying WWII gun encampments, abandoned barracks, and the stark presence of a fighter jet museum adjacent to Australia's primary F-35 training base— reflect cycles of progress intertwined with military influence. The F-35s, equipped with advanced AI-driven systems—a key advantage since the 2010s—train every weekday, looping over Newcastle's sky. With each step forward, the perception of the environment is reprogrammed, shaped by both the visible physical infrastructure and the invisible networks that redefine these spaces for each generation.<br /><br />The wall works extend these themes by merging real and synthetic imagery. Three works incorporate UV printed imagery on steel, their surfaces either burnt by homemade explosives, or scratched to leave behind tags, both motifs in the film. Two additional lenticular works, composed entirely of synthetic imagery, depict a hypothetical, disembodied perspective that merges human vision with machine-driven overlays, offering an augmented view from both the ground and the sky.<br /><br /><em>This project has been assisted by the Australian Government through Creative Australia, its principal arts investment and advisory body; the Victorian Government through Creative Victoria; and The Lock-Up's Artist in Residence program.</em><br /><br />",
   },
 ];
 
@@ -49,15 +51,11 @@ function HIBALL({ onNodeClick, position, rotate }) {
         onNodeClick({
           type: "biography",
           artistName: "HIBALL",
-          content: (
-            <div>
-              <img
-                src="./assets/HIBALL/Evidence_Wall/HIBALL_Evidence-Wall_crop-1.jpg"
-                alt="HIBALL"
-              />
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: `
+          pageUrl: "/hiball/",
+          content: [
+            <p
+              dangerouslySetInnerHTML={{
+                __html: `
                    Based in Melbourne, HIBALL are a director duo specialising in moving image for the digital world. Their work dances between art, fashion and technology - exploring speculative realities and memory. Operating between digital and analogue, their approach remains rooted in emotion and human experience.
 
 <br/><br/>
@@ -78,7 +76,7 @@ Helmed by Alexandra Kirwood and Stanton Cornish-Ward, HIBALL has built a reputat
 
 
 
-Stanton Cornish-Ward is an artist and filmmaker based in Naarm Melbourne, from Boorlo Perth. Her work explores the nuances of memory, intergenerational trauma, and the human impact of advancing technologies. Recent exhibitions include the National Gallery of Victoria, Naarm Melbourne (2023); Palazzo San Giuseppe, Polignano a Mare Italy (2022); Discorda Gallery, Naarm Melbourne (2021); Metro Arts, Meanjin Brisbane (2020), and MARS Gallery, Naarm Melbourne (2019). Cornish-Ward’s collaborative films *LOCK* (2021) and *In a World Full of Angels* (2022) were awarded Best Experimental Film at the Cologne International Film Festival 2022 and Experimental Forum International Film and Video Art Festival L.A 2023. Cornish-Ward teaches ‘Art & Film’ at Monash University.
+Stanton Cornish-Ward is an artist and filmmaker based in Naarm Melbourne, from Boorlo Perth. Her work explores the nuances of memory, intergenerational trauma, and the human impact of advancing technologies. Recent exhibitions include the National Gallery of Victoria, Naarm Melbourne (2023); Palazzo San Giuseppe, Polignano a Mare Italy (2022); Discorda Gallery, Naarm Melbourne (2021); Metro Arts, Meanjin Brisbane (2020), and MARS Gallery, Naarm Melbourne (2019). Cornish-Ward's collaborative films *LOCK* (2021) and *In a World Full of Angels* (2022) were awarded Best Experimental Film at the Cologne International Film Festival 2022 and Experimental Forum International Film and Video Art Festival L.A 2023. Cornish-Ward teaches ‘Art & Film' at Monash University.
 
 <br/><br/>
  <a href="https://www.stantoncornishward.com/" target="_blank">https://www.stantoncornishward.com/</a>
@@ -105,59 +103,12 @@ Alexandra Kirwood is a researcher and image-maker and a former Researcher in Res
 <a href="https://www.instagram.com/alexandrakirwood/" target="_blank">@alexandrakirwood</a>
 
                     `,
-                }}
-              />
-            </div>
-          ),
+              }}
+            />,
+          ],
         });
       }}
     >
-      <Node
-        position={[
-          Math.cos(angleStep * 0) * 2.2,
-          Math.sin(angleStep * 0) * 2.2,
-          0,
-        ]}
-        label="Text"
-        scale={[1, 1, 1]}
-        onClick={(e) => {
-          e.stopPropagation();
-          onNodeClick({
-            type: "statement",
-            artistName: "HIBALL",
-            content: (
-              <div>
-                <img src="../../assets/HIBALL/image1.jpg" alt="HIBALL" />
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                      <em>Composition for Mnemosyne</em> consists of a two-channel video artwork accompanied by five wall works, made in response to the artists’ time in Newcastle as part of The Lock-Up’s Artist in Residence program. Reflecting the artists’ own observations on shifting synthetic media as well as the ambient technological infrastructure of Newcastle, the works examine the complex and often uneasy relationship between human experience and increasingly pervasive AI driven systems, often rendered invisible. Avoiding a didactic approach, the series of works invites viewers to consider their own entanglement with rapidly advancing technology.
-
-<br /><br />
-
-The first video channel features The Hunter Singers, a Newcastle youth choir directed by Kim Sutherland OAM and conducted by Charissa Ferguson, performing an AI-assisted score by long-time collaborator of the artists, Mitchell Mackintosh. Using their voice and hands they emulate synthetic sounds into a choral performance, exploring the way new technology is not only reshaping the visual landscape but becoming an embodied and mediated presence in the human body.
-
-<br /><br />
-
-The second channel juxtaposes the choir's performance with scenes of a group of teenagers navigating Newcastle’s shifting technological landscape. These spaces— decaying WWII gun encampments, abandoned barracks, and the stark presence of a fighter jet museum adjacent to Australia’s primary F-35 training base— reflect cycles of progress intertwined with military influence. The F-35s, equipped with advanced AI-driven systems—a key advantage since the 2010s—train every weekday, looping over Newcastle’s sky. With each step forward, the perception of the environment is reprogrammed, shaped by both the visible physical infrastructure and the invisible networks that redefine these spaces for each generation.
-
-<br /><br />
-
-The wall works extend these themes by merging real and synthetic imagery. Three works incorporate UV printed imagery on steel, their surfaces either burnt by homemade explosives, or scratched to leave behind tags, both motifs in the film. Two additional lenticular works, composed entirely of synthetic imagery, depict a hypothetical, disembodied perspective that merges human vision with machine-driven overlays, offering an augmented view from both the ground and the sky.
-
-<br /><br />
-
-<em>This project has been assisted by the Australian Government through Creative Australia, its principal arts investment and advisory body; the Victorian Government through Creative Victoria; and The Lock-Up’s Artist in Residence program.</em>
-
-<br /><br />
-                    `,
-                  }}
-                />
-              </div>
-            ),
-          });
-        }}
-      />
       {loadedArtworks.map((artwork, index) => (
         <Node
           key={artwork.name}
@@ -173,6 +124,7 @@ The wall works extend these themes by merging real and synthetic imagery. Three 
             onNodeClick({
               type: "artwork",
               artistName: "HIBALL",
+              pageUrl: `/hiball/${artwork.name}/`,
               content: [
                 ...artwork.images.map((image, imgIndex) => (
                   <img
@@ -184,6 +136,10 @@ The wall works extend these themes by merging real and synthetic imagery. Three 
                 <p
                   key="text"
                   dangerouslySetInnerHTML={{ __html: artwork.text }}
+                />,
+                <p
+                  key="statement"
+                  dangerouslySetInnerHTML={{ __html: artwork.statement }}
                 />,
               ],
             });
