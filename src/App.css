@@ -18,6 +18,9 @@ body {
   font-size: 12px;
   line-height: 16px;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 canvas {
   cursor: grab;
 }
@@ -51,10 +54,15 @@ h2 {
   line-height: 1.8rem;
   padding-top: 3rem;
 }
+h3 {
+  font-weight: 100;
+  font-size: 2rem;
+  line-height: 1rem;
+}
 h4 {
   font-weight: 100;
   font-size: 0.6rem;
-  line-height: 0.6rem;
+  line-height: 1rem;
   /* font-family: monospace; */
 }
 a {

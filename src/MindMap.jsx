@@ -1,7 +1,6 @@
-import { extend } from "@react-three/fiber";
+import React, { useState, useEffect, useRef } from "react";
 import { Line } from "@react-three/drei";
-
-import React, { useState } from "react";
+import { useThree } from "@react-three/fiber";
 import TitleWithBaubles from "./TitleWithBaubles";
 import RoyAnanda from "./components/Artists/RoyAnanda";
 import GirlOnRoad from "./components/Artists/GirlOnRoad";
@@ -10,15 +9,21 @@ import JonRafman from "./components/Artists/JonRafman";
 import BrieTrenerry from "./components/Artists/BrieTrenerry";
 import DataMinds from "./components/Artists/DataMinds";
 
-// Extend the THREE namespace to include the Line component
-extend({ Line });
-
 function MindMap({ onNodeClick, isRandomView }) {
   const titlePosition = [0, 0, 0];
   const numArtists = 6;
   const radius = 3.6;
   const minDistance = 2.0; // Minimum distance between artists
   const maxDistance = 5.0; // Maximum distance from the title
+  const { camera } = useThree();
+  const cameraRef = useRef(camera);
+
+  useEffect(() => {
+    if (!isRandomView) {
+      cameraRef.current.position.set(0, 0, 20); // Set camera to a flat view
+      cameraRef.current.lookAt(0, 0, 0);
+    }
+  }, [isRandomView]);
 
   const generatePosition = (existingPositions) => {
     let position;
@@ -72,7 +77,7 @@ function MindMap({ onNodeClick, isRandomView }) {
 
   return (
     <group>
-      <TitleWithBaubles modelPath="/title_dm.gltf">
+      <TitleWithBaubles modelPath="/title_dm.gltf" rotate={isRandomView}>
         {positions.map((position, index) => (
           <group key={index}>
             <Line

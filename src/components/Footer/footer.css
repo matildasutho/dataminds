@@ -5,14 +5,19 @@
   bottom: 0px;
   width: 100%;
   z-index: 30;
-  text-align: right;
+  text-align: left;
   padding: 0em 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 .switch {
   position: relative;
   display: inline-block;
   width: 45px;
   height: 24px;
+  margin-bottom: 1em;
 }
 
 .switch input {

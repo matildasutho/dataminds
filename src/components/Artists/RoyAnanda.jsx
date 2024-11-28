@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import { useParams } from "react-router-dom";
 import Node from "../../Node";
 
 // Import all images from the respective directories using import.meta.glob
@@ -20,6 +21,7 @@ const artworks = [
 function RoyAnanda({ onNodeClick, position, rotate }) {
   const [loadedArtworks, setLoadedArtworks] = useState([]);
   const modelRef = useRef();
+  const { slug } = useParams();
 
   useEffect(() => {
     const loadImages = async () => {
@@ -112,7 +114,9 @@ function RoyAnanda({ onNodeClick, position, rotate }) {
             onNodeClick({
               type: "artwork",
               artistName: "Roy Ananda",
-              pageUrl: `/roy-ananda/${artwork.name}/`,
+              pageUrl: `/roy-ananda/${artwork.name
+                .toLowerCase()
+                .replace(/\s+/g, "-")}/`,
               content: [
                 ...artwork.images.map((image, imgIndex) => (
                   <img

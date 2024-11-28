@@ -19,3 +19,8 @@
 .instructions.visible {
   opacity: 0.8;
 }
+@media screen and (max-width: 768px) {
+  .instructions {
+    margin-bottom: 6em;
+  }
+}

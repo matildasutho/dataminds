@@ -34,16 +34,20 @@ function Node({
       <RigidBody type="kinematicPosition" colliders={false}>
         <BallCollider args={[1]} />
         <mesh>
-          <sphereGeometry args={[0.1, 16, 16]} />
+          <sphereGeometry args={[0.05, 16, 16]} />
           <meshStandardMaterial color="cyan" metalness={0.48} roughness={0.4} />
         </mesh>
         <Text
           ref={textRef}
-          position={[-0.2, 0.3, 0]}
-          fontSize={0.2}
+          position={[-0.1, 0.2, 0]}
+          fontSize={0.175}
+          lineHeight={1.2}
           color="blue"
           anchorX="right"
           anchorY="middle"
+          textAlign="left"
+          textDecoration="underline"
+          font="/Arial.ttf"
         >
           {label}
         </Text>
