@@ -92,6 +92,9 @@
   width: auto;
   max-height: calc(100% - 1em);
 }
+p {
+  max-width: 50vw;
+}
 
 @media screen and (max-width: 768px) {
   .popup-content {

@@ -39,6 +39,7 @@ canvas {
 p {
   font-size: 1.2rem;
   line-height: 1.6rem;
+  max-width: 50vw;
 }
 
 h1 {
@@ -71,4 +72,9 @@ a {
 a:hover {
   text-decoration: none;
   background-color: cyan;
+}
+@media screen and (max-width: 768px) {
+  p {
+    max-width: 100vw;
+  }
 }
