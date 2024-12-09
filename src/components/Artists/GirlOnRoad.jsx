@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import Node from "../../Node";
 
 // Import all images from the respective directories using import.meta.glob
@@ -9,7 +10,7 @@ const artwork2 = import.meta.glob(
   "./assets/Girl_On_Road/bit_plane_5/*.{png,jpg,jpeg,svg}"
 );
 
-const artworks = [
+export const artworks = [
   {
     name: "cipher",
     images: Object.values(artwork1),
@@ -26,8 +27,16 @@ const artworks = [
   },
 ];
 
+const generateSlug = (title) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .replace(/\s+/g, "-");
+};
+
 function GirlOnRoad({ onNodeClick, position, rotate }) {
   const [loadedArtworks, setLoadedArtworks] = useState([]);
+  const modelRef = useRef();
 
   useEffect(() => {
     const loadImages = async () => {
@@ -47,6 +56,12 @@ function GirlOnRoad({ onNodeClick, position, rotate }) {
 
     loadImages();
   }, []);
+
+  useFrame((state, delta) => {
+    if (modelRef.current && rotate) {
+      modelRef.current.rotation.y += delta;
+    }
+  });
 
   const totalNodes = loadedArtworks.length + 4; // Total number of artworks + 1 statement
   const angleStep = (2 * Math.PI) / totalNodes;
@@ -112,7 +127,7 @@ function GirlOnRoad({ onNodeClick, position, rotate }) {
             onNodeClick({
               type: "artwork",
               artistName: "Girl On Road",
-              pageUrl: `/girl-on-road/${artwork.name}/`,
+              pageUrl: `/girl-on-road/${generateSlug(artwork.name)}/`,
               content: [
                 ...artwork.images.map((image, imgIndex) => (
                   <img

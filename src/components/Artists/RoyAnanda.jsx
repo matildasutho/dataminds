@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useParams } from "react-router-dom";
 import Node from "../../Node";
 
 // Import all images from the respective directories using import.meta.glob
@@ -8,9 +7,10 @@ const artwork1 = import.meta.glob(
   "./assets/Roy_Ananda/Evidence_Wall/*.{png,jpg,jpeg,svg}"
 );
 
-const artworks = [
+export const artworks = [
   {
     name: "Evidence wall",
+    artistName: "Roy Ananda",
     images: Object.values(artwork1),
     text: "<i>Evidence wall</i><br>2023<br>Digital prints and ink on paper, thread, pins, acoustic pinboard, dimensions variable.<br/><br/>This work was originally commissioned by <i>Artlink's</i>, After AI. Issue 43:2 | Wirltuti / Spring 2023.",
     statement:
@@ -18,10 +18,16 @@ const artworks = [
   },
 ];
 
+const generateSlug = (title) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .replace(/\s+/g, "-");
+};
+
 function RoyAnanda({ onNodeClick, position, rotate }) {
   const [loadedArtworks, setLoadedArtworks] = useState([]);
   const modelRef = useRef();
-  const { slug } = useParams();
 
   useEffect(() => {
     const loadImages = async () => {
@@ -114,9 +120,7 @@ function RoyAnanda({ onNodeClick, position, rotate }) {
             onNodeClick({
               type: "artwork",
               artistName: "Roy Ananda",
-              pageUrl: `/roy-ananda/${artwork.name
-                .toLowerCase()
-                .replace(/\s+/g, "-")}/`,
+              pageUrl: `/roy-ananda/${generateSlug(artwork.name)}/`,
               content: [
                 ...artwork.images.map((image, imgIndex) => (
                   <img

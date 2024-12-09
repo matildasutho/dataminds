@@ -11,6 +11,15 @@
   align-items: center; */
   z-index: 50;
   overflow-y: auto;
+  opacity: 0;
+  animation-delay: 1s;
+  animation: fadeIn 0.8s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
 .popup-content {
@@ -22,7 +31,6 @@
 
 .popup-close {
   position: absolute;
-  z-index: 200;
   top: 10px;
   right: 10px;
   background: none;
@@ -61,12 +69,10 @@
   padding-left: 1em;
 }
 .artwork-gallery img {
+  cursor: pointer;
   width: 100%;
 }
 .artwork-gallery img:hover {
-  /* box-shadow: 3px 3px 3px rgba(0, 0, 255, 0.8); */
-  /* transform: translateY(3px), translateX(-3px); */
-  /* transition: 0.1s; */
   filter: blur(2px);
 }
 .full-page-image {
@@ -83,7 +89,7 @@
 }
 
 .full-page-image img {
-  max-width: 90%;
+  width: auto;
   max-height: calc(100% - 1em);
 }
 

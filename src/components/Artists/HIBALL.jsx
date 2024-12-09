@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import Node from "../../Node";
 
 // Import all images and videos from the respective directories using import.meta.glob
@@ -6,9 +7,9 @@ const artwork1 = import.meta.glob(
   "./assets/HIBALL/Composition_for_Mnemosyne/*.{png,jpg,jpeg,svg,mp4}"
 );
 
-const artworks = [
+export const artworks = [
   {
-    name: "Composition for\nMnemosyne",
+    name: "Composition for Mnemosyne",
     images: Object.values(artwork1),
     text: "<em>Composition for Mnemosyne</em><br>2024.<br>Two-channel 2k video, stereo sound. 7:24 min",
     statement:
@@ -16,8 +17,16 @@ const artworks = [
   },
 ];
 
+const generateSlug = (title) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .replace(/\s+/g, "-");
+};
+
 function HIBALL({ onNodeClick, position, rotate }) {
   const [loadedArtworks, setLoadedArtworks] = useState([]);
+  const modelRef = useRef();
 
   useEffect(() => {
     const loadImages = async () => {
@@ -38,6 +47,12 @@ function HIBALL({ onNodeClick, position, rotate }) {
     loadImages();
   }, []);
 
+  useFrame((state, delta) => {
+    if (modelRef.current && rotate) {
+      modelRef.current.rotation.y += delta;
+    }
+  });
+
   const totalNodes = loadedArtworks.length + 1; // Total number of artworks + 1 statement
   const angleStep = (2 * Math.PI) / totalNodes;
 
@@ -50,7 +65,7 @@ function HIBALL({ onNodeClick, position, rotate }) {
         e.stopPropagation();
         onNodeClick({
           type: "biography",
-          artistName: "HIBALL",
+          artistName: "Hiball",
           pageUrl: "/hiball/",
           content: [
             <p>
@@ -149,23 +164,16 @@ function HIBALL({ onNodeClick, position, rotate }) {
             e.stopPropagation();
             onNodeClick({
               type: "artwork",
-              artistName: "HIBALL",
-              pageUrl: `/hiball/${artwork.name
-                .toLowerCase()
-                .replace(/\s+/g, "-")}/`,
+              artistName: "Hiball",
+              pageUrl: `/hiball/${generateSlug(artwork.name)}/`,
               content: [
-                ...artwork.images.map((media, imgIndex) => {
-                  const isVideo = media.endsWith(".mp4");
-                  return isVideo ? (
-                    <video key={imgIndex} src={media} controls />
-                  ) : (
-                    <img
-                      key={imgIndex}
-                      src={media}
-                      alt={`${artwork.name} ${imgIndex + 1}`}
-                    />
-                  );
-                }),
+                ...artwork.images.map((image, imgIndex) => (
+                  <img
+                    key={imgIndex}
+                    src={image}
+                    alt={`${artwork.name} ${imgIndex + 1}`}
+                  />
+                )),
                 <p
                   key="text"
                   dangerouslySetInnerHTML={{ __html: artwork.text }}

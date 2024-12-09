@@ -1,5 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
+const generateSlug = (title) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .replace(/\s+/g, "-");
+};
+
+const convertSlugToName = (slug) => {
+  return slug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
 
 const ArtistPage = () => {
   const { artistSlug, artworkSlug } = useParams();
@@ -7,16 +21,17 @@ const ArtistPage = () => {
 
   useEffect(() => {
     const loadComponent = async () => {
-      const artistName = convertSlugToName(artistSlug);
+      const artistName = convertSlugToName(artistSlug).replace(/\s+/g, "");
+      console.log("Loading component for artist:", artistName); // Debug statement
       let component;
       try {
-        component = await import(`./components/Artists/${artistName}`);
+        component = await import(`./${artistName}Wrapper`);
       } catch (error) {
         console.error("Error loading component:", error);
         component = null;
       }
       if (component && component.default) {
-        setContent(component.default);
+        setContent(() => component.default);
       }
     };
     loadComponent();
@@ -34,11 +49,3 @@ const ArtistPage = () => {
 };
 
 export default ArtistPage;
-
-// Helper function to convert slug to name
-const convertSlugToName = (slug) => {
-  return slug
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-};

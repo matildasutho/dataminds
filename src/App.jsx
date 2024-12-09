@@ -1,3 +1,4 @@
+import React from "react";
 import * as THREE from "three";
 import { useState, useEffect } from "react";
 import {
@@ -5,52 +6,27 @@ import {
   Routes,
   Route,
   useNavigate,
-  useParams,
+  useLocation,
 } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { EffectComposer, N8AO } from "@react-three/postprocessing";
 import { Physics } from "@react-three/rapier";
 import MindMap from "./MindMap";
-import Popup from "./components/Popup/Popup";
-import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Instructions from "./components/Instructions/Instructions";
+import Header from "./components/Header/Header"; // Import the Header component
+import ArtistPage from "./components/Artists/ArtistPage"; // Import the ArtistPage component
+import Popup from "./components/Popup/Popup";
 import "./App.css";
 
 THREE.ColorManagement.legacyMode = false;
 
 const App = () => {
-  const [popupContent, setPopupContent] = useState(null);
   const [isRandomView, setIsRandomView] = useState(true);
+  const [popupContent, setPopupContent] = useState(null);
   const navigate = useNavigate();
-  const { slug } = useParams();
-
-  useEffect(() => {
-    if (slug) {
-      // Dynamically import and render the relevant artist component based on the slug
-      const loadComponent = async () => {
-        let component;
-        switch (slug) {
-          case "roy-ananda/evidence-wall":
-            component = await import("./components/Artists/RoyAnanda");
-            break;
-          // Add more cases for other slugs
-          default:
-            component = null;
-        }
-        if (component) {
-          setPopupContent({
-            type: "artwork",
-            artistName: "Roy Ananda",
-            pageUrl: `/roy-ananda/evidence-wall`,
-            content: component.default,
-          });
-        }
-      };
-      loadComponent();
-    }
-  }, [slug]);
+  const location = useLocation();
 
   const handleNodeClick = (content) => {
     console.log("Node clicked:", content); // Debug statement
@@ -66,13 +42,50 @@ const App = () => {
     navigate("/");
   };
 
+  useEffect(() => {
+    const { pathname } = location;
+    const pathParts = pathname.split("/").filter(Boolean);
+    if (pathParts.length === 2) {
+      const [artistSlug, artworkSlug] = pathParts;
+      const loadContent = async () => {
+        const artistName = artistSlug
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join("")
+          .replace(/\s+/g, "");
+        let component;
+        try {
+          component = await import(`./components/Artists/${artistName}Wrapper`);
+        } catch (error) {
+          console.error("Error loading component:", error);
+          component = null;
+        }
+
+        if (component && component.default) {
+          setPopupContent({
+            type: "artwork",
+            artistName,
+            pageUrl: pathname,
+            content: [
+              React.createElement(component.default, {
+                artworkSlug,
+                key: pathname,
+              }),
+            ],
+          });
+        }
+      };
+      loadContent();
+    }
+  }, [location]);
+
   const toggleView = () => {
     setIsRandomView((prev) => !prev);
   };
 
   return (
     <>
-      <Header />
+      <Header /> {/* Include the Header component */}
       <Canvas
         shadows
         gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
@@ -97,7 +110,8 @@ const App = () => {
         <EffectComposer disableNormalPass>
           <N8AO color="red" aoRadius={2} intensity={1.15} />
         </EffectComposer>
-        <OrbitControls />
+        {isRandomView && <OrbitControls />}{" "}
+        {/* Conditionally render OrbitControls */}
       </Canvas>
       {popupContent && (
         <Popup content={popupContent} onClose={handleClosePopup} />
@@ -106,10 +120,7 @@ const App = () => {
       <Instructions />
       <Routes>
         <Route path="/" element={<div />} />
-        <Route
-          path="/:slug"
-          element={<Popup content={popupContent} onClose={handleClosePopup} />}
-        />
+        <Route path="/:artistSlug/:artworkSlug" element={<ArtistPage />} />
       </Routes>
     </>
   );
