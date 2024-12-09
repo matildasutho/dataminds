@@ -1,18 +1,11 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useParams } from "react-router-dom";
-import RoyAnandaWrapper from "./RoyAnandaWrapper";
-import BrieTrenerryWrapper from "./BrieTrenerryWrapper";
-import HiballWrapper from "./HiballWrapper";
-import GirlOnRoadWrapper from "./GirlOnRoadWrapper";
-import JonRafmanWrapper from "./JonRafmanWrapper";
+import RoyAnandaWrapper from "src/components/Artists/RoyAnandaWrapper.jsx";
+import BrieTrenerryWrapper from "src/components/Artists/BrieTrenerryWrapper.jsx";
+import HiballWrapper from "src/components/Artists/HiballWrapper.jsx";
+import GirlOnRoadWrapper from "src/components/Artists/GirlOnRoadWrapper.jsx";
+import JonRafmanWrapper from "src/components/Artists/JonRafmanWrapper.jsx";
 import "./ArtistPage.css"; // Import CSS for fade-in effect
-
-const generateSlug = (title) => {
-  return title
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, "")
-    .replace(/\s+/g, "-");
-};
 
 const convertSlugToName = (slug) => {
   return slug
@@ -27,7 +20,7 @@ const ArtistPage = () => {
 
   useEffect(() => {
     const artistName = convertSlugToName(artistSlug).replace(/\s+/g, "");
-    console.log("Loading component for artist:", artistName); // Debug statement
+    // console.log("Loading component for artist:", artistName); // Debug statement
 
     switch (artistName) {
       case "RoyAnanda":

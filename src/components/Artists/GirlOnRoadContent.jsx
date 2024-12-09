@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./popup-styling.css";
-
+import "./wrapper.css";
 const GirlOnRoadContent = ({ artworkSlug, artworks, handleClose }) => {
   const generateSlug = (title) => {
     return title

@@ -29,7 +29,7 @@ const App = () => {
   const location = useLocation();
 
   const handleNodeClick = (content) => {
-    console.log("Node clicked:", content); // Debug statement
+    // console.log("Node clicked:", content); // Debug statement
     setPopupContent(content);
     if (content.pageUrl) {
       navigate(content.pageUrl);
@@ -37,7 +37,7 @@ const App = () => {
   };
 
   const handleClosePopup = () => {
-    console.log("Popup closed"); // Debug statement
+    // console.log("Popup closed"); // Debug statement
     setPopupContent(null);
     navigate("/");
   };

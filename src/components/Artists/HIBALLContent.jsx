@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./popup-styling.css";
+import "./wrapper.css";
 
 const HIBALLContent = ({ artworkSlug, artworks, handleClose }) => {
   const generateSlug = (title) => {

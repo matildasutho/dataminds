@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./popup-styling.css";
-
+import "./wrapper.css";
 const BrieTrenerryContent = ({ artworkSlug, artworks, handleClose }) => {
   const generateSlug = (title) => {
     return title
