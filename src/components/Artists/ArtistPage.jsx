@@ -5,7 +5,7 @@ import BrieTrenerryWrapper from "src/components/Artists/BrieTrenerryWrapper.jsx"
 import HiballWrapper from "src/components/Artists/HiballWrapper.jsx";
 import GirlOnRoadWrapper from "src/components/Artists/GirlOnRoadWrapper.jsx";
 import JonRafmanWrapper from "src/components/Artists/JonRafmanWrapper.jsx";
-import "./ArtistPage.css"; // Import CSS for fade-in effect
+import "src/components/Artists/ArtistPage.css"; // Import CSS for fade-in effect
 
 const convertSlugToName = (slug) => {
   return slug
