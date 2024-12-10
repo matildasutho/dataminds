@@ -7,11 +7,27 @@ import GirlOnRoadWrapper from "src/components/Artists/GirlOnRoadWrapper.jsx";
 import JonRafmanWrapper from "src/components/Artists/JonRafmanWrapper.jsx";
 import "src/components/Artists/ArtistPage.css"; // Import CSS for fade-in effect
 
+const generateSlug = (title) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .replace(/\s+/g, "-");
+};
+
 const convertSlugToName = (slug) => {
   return slug
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+};
+
+const artistComponents = {
+  RoyAnanda: RoyAnandaWrapper,
+  BrieTrenerry: BrieTrenerryWrapper,
+  Hiball: HiballWrapper,
+  GirlOnRoad: GirlOnRoadWrapper,
+  JonRafman: JonRafmanWrapper,
+  // Add other artists here
 };
 
 const ArtistPage = () => {
@@ -20,36 +36,23 @@ const ArtistPage = () => {
 
   useEffect(() => {
     const artistName = convertSlugToName(artistSlug).replace(/\s+/g, "");
-    // console.log("Loading component for artist:", artistName); // Debug statement
+    console.log("Loading component for artist:", artistName); // Debug statement
 
-    switch (artistName) {
-      case "RoyAnanda":
-        setComponent(() => RoyAnandaWrapper);
-        break;
-      case "BrieTrenerry":
-        setComponent(() => BrieTrenerryWrapper);
-        break;
-      case "Hiball":
-        setComponent(() => HiballWrapper);
-        break;
-      case "GirlOnRoad":
-        setComponent(() => GirlOnRoadWrapper);
-        break;
-      case "JonRafman":
-        setComponent(() => JonRafmanWrapper);
-        break;
-      default:
-        console.error("Artist component not found:", artistName);
-        setComponent(null);
+    const component = artistComponents[artistName];
+    if (component) {
+      setComponent(() => component);
+    } else {
+      console.error("Artist component not found:", artistName);
+      setComponent(null);
     }
   }, [artistSlug, artworkSlug]);
 
   return (
     <div className="artist-page">
       {Component ? (
-        <Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>Loading...</div>}>
           <Component artworkSlug={artworkSlug} />
-        </Suspense>
+        </React.Suspense>
       ) : (
         <p>Loading...</p>
       )}

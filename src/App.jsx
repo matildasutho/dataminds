@@ -12,13 +12,13 @@ import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { EffectComposer, N8AO } from "@react-three/postprocessing";
 import { Physics } from "@react-three/rapier";
-import MindMap from "./MindMap";
-import Footer from "./components/Footer/Footer";
-import Instructions from "./components/Instructions/Instructions";
-import Header from "./components/Header/Header"; // Import the Header component
-import ArtistPage from "./components/Artists/ArtistPage"; // Import the ArtistPage component
-import Popup from "./components/Popup/Popup";
-import "./App.css";
+import MindMap from "src/MindMap";
+import Footer from "src/components/Footer/Footer";
+import Instructions from "src/components/Instructions/Instructions";
+import Header from "src/components/Header/Header"; // Import the Header component
+import ArtistPage from "src/components/Artists/ArtistPage"; // Import the ArtistPage component
+import Popup from "src/components/Popup/Popup";
+import "src/App.css";
 
 THREE.ColorManagement.legacyMode = false;
 
