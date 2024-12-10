@@ -2,8 +2,8 @@ import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
-import BrieTrenerry, { artworks } from "./BrieTrenerry";
-import BrieTrenerryContent from "./BrieTrenerryContent";
+import BrieTrenerry, { artworks } from "src/components/Artists/BrieTrenerry";
+import BrieTrenerryContent from "src/components/Artists/BrieTrenerryContent";
 
 const BrieTrenerryWrapper = ({ artworkSlug, handleClose }) => {
   return (

@@ -2,8 +2,8 @@ import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
-import JonRafman, { artworks } from "./JonRafman";
-import JonRafmanContent from "./JonRafmanContent";
+import JonRafman, { artworks } from "src/components/Artists/JonRafman";
+import JonRafmanContent from "src/components/Artists/JonRafmanContent";
 
 const JonRafmanWrapper = ({ artworkSlug, handleClose }) => {
   return (

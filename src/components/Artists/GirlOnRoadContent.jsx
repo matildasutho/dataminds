@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./wrapper.css";
+import "src/components/Artists/wrapper.css";
 const GirlOnRoadContent = ({ artworkSlug, artworks, handleClose }) => {
   const generateSlug = (title) => {
     return title

@@ -9,7 +9,7 @@ const artwork1 = import.meta.glob(
 
 export const artworks = [
   {
-    name: "Composition for Mnemosyne",
+    name: "Composition for\nMnemosyne",
     images: Object.values(artwork1),
     text: "<em>Composition for Mnemosyne</em><br>2024.<br>Two-channel 2k video, stereo sound. 7:24 min",
     statement:

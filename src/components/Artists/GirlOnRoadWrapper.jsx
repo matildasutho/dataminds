@@ -2,8 +2,8 @@ import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
-import GirlOnRoad, { artworks } from "./GirlOnRoad";
-import GirlOnRoadContent from "./GirlOnRoadContent";
+import GirlOnRoad, { artworks } from "src/components/Artists/GirlOnRoad";
+import GirlOnRoadContent from "src/components/Artists/GirlOnRoadContent";
 
 const GirlOnRoadWrapper = ({ artworkSlug, handleClose }) => {
   return (

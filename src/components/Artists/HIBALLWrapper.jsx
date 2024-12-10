@@ -2,8 +2,8 @@ import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
-import HIBALL, { artworks } from "./HIBALL";
-import HIBALLContent from "./HIBALLContent";
+import HIBALL, { artworks } from "src/components/Artists/HIBALL";
+import HIBALLContent from "src/components/Artists/HIBALLContent";
 
 const HIBALLWrapper = ({ artworkSlug, handleClose }) => {
   return (

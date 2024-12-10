@@ -2,8 +2,8 @@ import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
-import RoyAnanda, { artworks } from "./RoyAnanda";
-import RoyAnandaContent from "./RoyAnandaContent";
+import RoyAnanda, { artworks } from "src/components/Artists/RoyAnanda";
+import RoyAnandaContent from "src/components/Artists/RoyAnandaContent";
 
 const RoyAnandaWrapper = ({ artworkSlug, handleClose }) => {
   return (
