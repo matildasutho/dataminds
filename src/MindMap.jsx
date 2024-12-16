@@ -145,10 +145,6 @@ const MindMap = ({ onNodeClick }) => {
                       ) * 2.4,
                       0,
                     ];
-                    // console.log(
-                    //   `Rendering node for artwork ${artwork.title} at position:`,
-                    //   artworkPosition
-                    // );
                     return (
                       <Node
                         key={artwork.sys.id}
@@ -161,23 +157,6 @@ const MindMap = ({ onNodeClick }) => {
                             type: "artwork",
                             artistName: artist.artistName,
                             pageUrl: `/${artistSlug}/${artworkSlug}`,
-                            content: [
-                              ...artwork.imagesCollection.items.map(
-                                (image, imgIndex) => (
-                                  <img
-                                    key={imgIndex}
-                                    src={image.url}
-                                    alt={`${artwork.title} ${imgIndex + 1}`}
-                                  />
-                                )
-                              ),
-                              <p
-                                key="description"
-                                dangerouslySetInnerHTML={{
-                                  __html: artwork.artworkDescription.json,
-                                }}
-                              />,
-                            ],
                           });
                         }}
                       />

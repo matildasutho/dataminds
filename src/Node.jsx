@@ -23,8 +23,8 @@ const Node = ({
         </mesh>
         <Text
           ref={textRef}
-          position={[-0.1, 0.2, 0]}
-          fontSize={0.175}
+          position={[-0.1, 0.1, 0]}
+          fontSize={0.163}
           lineHeight={1.2}
           color="blue"
           anchorX="right"
