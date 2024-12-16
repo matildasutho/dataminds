@@ -1,13 +1,21 @@
 import React from "react";
+import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
+import { EffectComposer, N8AO } from "@react-three/postprocessing";
 import { Physics } from "@react-three/rapier";
-import BrieTrenerry, { artworks } from "src/components/Artists/BrieTrenerry";
-import BrieTrenerryContent from "src/components/Artists/BrieTrenerryContent";
+import MindMap from "../MindMap";
+import Footer from "../components/Footer/Footer";
+import Instructions from "../components/Instructions/Instructions";
+import Header from "../components/Header/Header";
+import "./CanvasPage.css";
 
-const BrieTrenerryWrapper = ({ artworkSlug, handleClose }) => {
+THREE.ColorManagement.legacyMode = false;
+
+const CanvasPage = ({ artists, handleNodeClick, isRandomView, toggleView }) => {
   return (
     <>
+      <Header />
       <Canvas
         shadows
         gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
@@ -26,18 +34,21 @@ const BrieTrenerryWrapper = ({ artworkSlug, handleClose }) => {
         <directionalLight position={[3.6, 5, 15]} intensity={4} />
         <directionalLight position={[0, -15, -0]} intensity={4} color="blue" />
         <Physics gravity={[0, 0, 0]}>
-          <BrieTrenerry />
+          <MindMap
+            artists={artists}
+            onNodeClick={handleNodeClick}
+            isRandomView={isRandomView}
+          />
         </Physics>
         <Environment files="/adamsbridge.hdr" />
+        <EffectComposer disableNormalPass>
+          <N8AO color="red" aoRadius={2} intensity={1.15} />
+        </EffectComposer>
         <OrbitControls />
       </Canvas>
-      <BrieTrenerryContent
-        artworkSlug={artworkSlug}
-        artworks={artworks}
-        handleClose={handleClose}
-      />
+      <Instructions />
     </>
   );
 };
 
-export default BrieTrenerryWrapper;
+export default CanvasPage;

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./Popup.css";
 
-function Popup({ content, onClose }) {
+function Popup({ content, onClose, index }) {
   const renderContent = () => {
     if (!content) return null;
 
@@ -13,7 +13,9 @@ function Popup({ content, onClose }) {
             <div className="artist-header">
               <h1>{content.artistName}</h1>
             </div>
-            <div className="popup-content">{content.content}</div>
+            <div className="popup-content" key={index}>
+              {content.content}
+            </div>
           </>
         );
       case "artwork":
@@ -22,7 +24,9 @@ function Popup({ content, onClose }) {
             <div className="artist-header">
               <h1>{content.artistName}</h1>
             </div>
-            <div className="popup-content">{content.content}</div>
+            <div className="popup-content" key={index}>
+              {content.content}
+            </div>
           </>
         );
       case "exhibition":

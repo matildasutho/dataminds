@@ -1,0 +1,37 @@
+.dm-title {
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-size: 4em;
+  line-height: 1em;
+}
+.artist-list-page {
+  padding: 1em;
+  width: 100%;
+}
+
+.artist-list-page ul {
+  list-style-type: none;
+  padding: 0;
+}
+.artist-list-page ul li {
+  list-style-type: none;
+  margin: 0;
+}
+
+.artist-list-page li {
+  margin-bottom: 1em;
+}
+
+.artist-list-page li > div {
+  cursor: pointer;
+}
+
+.artwork-list {
+  margin-top: 0.5em;
+  padding-left: 1em;
+}
+
+.artwork-list li {
+  margin-bottom: 0em;
+  padding-left: 6em;
+}

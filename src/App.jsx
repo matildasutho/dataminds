@@ -1,137 +1,67 @@
-import React from "react";
-import * as THREE from "three";
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useNavigate,
-  useLocation,
+  BrowserRouter,
 } from "react-router-dom";
-import { Canvas } from "@react-three/fiber";
-import { Environment, OrbitControls } from "@react-three/drei";
-import { EffectComposer, N8AO } from "@react-three/postprocessing";
-import { Physics } from "@react-three/rapier";
-import MindMap from "src/MindMap";
-import Footer from "src/components/Footer/Footer";
-import Instructions from "src/components/Instructions/Instructions";
-import Header from "src/components/Header/Header"; // Import the Header component
-import ArtistPage from "src/components/Artists/ArtistPage"; // Import the ArtistPage component
-import Popup from "src/components/Popup/Popup";
-import "src/App.css";
-
-THREE.ColorManagement.legacyMode = false;
+import Homepage from "./pages/Homepage";
+import ArtistPage from "./components/Artists/ArtistPage";
+import ArtworkPage from "./components/Artists/ArtworkPage";
+import Footer from "./components/Footer/Footer"; // Import the Footer component
+import { fetchData } from "./fetchContentful"; // Import the fetch function
+import "./App.css";
 
 const App = () => {
-  const [isRandomView, setIsRandomView] = useState(true);
-  const [popupContent, setPopupContent] = useState(null);
+  const [artists, setArtists] = useState([]);
   const navigate = useNavigate();
-  const location = useLocation();
+
+  useEffect(() => {
+    const fetchArtists = async () => {
+      try {
+        const data = await fetchData();
+        console.log("Fetched artists data:", data.artistCollection.items);
+        setArtists(data.artistCollection.items);
+      } catch (error) {
+        console.error("Error fetching artists:", error);
+      }
+    };
+
+    fetchArtists();
+  }, []);
 
   const handleNodeClick = (content) => {
-    // console.log("Node clicked:", content); // Debug statement
-    setPopupContent(content);
+    console.log("Node clicked:", content); // Debug statement
     if (content.pageUrl) {
       navigate(content.pageUrl);
     }
   };
 
-  const handleClosePopup = () => {
-    // console.log("Popup closed"); // Debug statement
-    setPopupContent(null);
-    navigate("/");
-  };
-
-  useEffect(() => {
-    const { pathname } = location;
-    const pathParts = pathname.split("/").filter(Boolean);
-    if (pathParts.length === 2) {
-      const [artistSlug, artworkSlug] = pathParts;
-      const loadContent = async () => {
-        const artistName = artistSlug
-          .split("-")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join("")
-          .replace(/\s+/g, "");
-        let component;
-        try {
-          component = await import(`./components/Artists/${artistName}Wrapper`);
-        } catch (error) {
-          console.error("Error loading component:", error);
-          component = null;
-        }
-
-        if (component && component.default) {
-          setPopupContent({
-            type: "artwork",
-            artistName,
-            pageUrl: pathname,
-            content: [
-              React.createElement(component.default, {
-                artworkSlug,
-                key: pathname,
-              }),
-            ],
-          });
-        }
-      };
-      loadContent();
-    }
-  }, [location]);
-
-  const toggleView = () => {
-    setIsRandomView((prev) => !prev);
-  };
-
   return (
-    <>
-      <Header /> {/* Include the Header component */}
-      <Canvas
-        shadows
-        gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-        onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
-      >
-        <ambientLight intensity={0.38} />
-        <spotLight
-          position={[20, 20, 25]}
-          penumbra={1}
-          angle={0.2}
-          color="white"
-          castShadow
-          shadow-mapSize={[512, 512]}
-        />
-        <directionalLight position={[3.6, 5, 15]} intensity={4} />
-        <directionalLight position={[0, -15, -0]} intensity={4} color="blue" />
-        <Physics gravity={[0, 0, 0]}>
-          <MindMap onNodeClick={handleNodeClick} isRandomView={isRandomView} />
-        </Physics>
-        <Environment files="/adamsbridge.hdr" />
-        <EffectComposer disableNormalPass>
-          <N8AO color="red" aoRadius={2} intensity={1.15} />
-        </EffectComposer>
-        {isRandomView && <OrbitControls />}{" "}
-        {/* Conditionally render OrbitControls */}
-      </Canvas>
-      {popupContent && (
-        <Popup content={popupContent} onClose={handleClosePopup} />
-      )}
-      <Footer isRandomView={isRandomView} toggleView={toggleView} />
-      <Instructions />
+    <div>
       <Routes>
-        <Route path="/" element={<div />} />
-        <Route path="/:artistSlug/:artworkSlug" element={<ArtistPage />} />
+        <Route
+          path="/"
+          element={
+            <Homepage artists={artists} handleNodeClick={handleNodeClick} />
+          }
+        />
+        <Route path="/:slug/" element={<ArtistPage artists={artists} />} />
+        <Route
+          path="/:artistSlug/:artworkSlug"
+          element={<ArtworkPage artists={artists} />}
+        />
       </Routes>
-    </>
+      <Footer />
+    </div>
   );
 };
 
 const AppWithRouter = () => (
-  <Router>
-    <Routes>
-      <Route path="/*" element={<App />} />
-    </Routes>
-  </Router>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
 
 export default AppWithRouter;

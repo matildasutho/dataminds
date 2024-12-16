@@ -1,33 +1,14 @@
-/* Footer.css */
-.footer {
-  position: fixed;
-  height: fit-content;
-  bottom: 0px;
-  width: 50%;
-  z-index: 250;
-  text-align: left;
-  padding: 0em 1em;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
+canvas {
+  width: 100vw;
+  height: 100vh;
+  cursor: grab;
 }
-.footer-txt {
-  background-image: linear-gradient(180deg, #f6d36500 0%, #ffff00 40%);
-  position: fixed;
-  height: fit-content;
-  bottom: 0px;
-  width: 100%;
-  z-index: 30;
-  text-align: left;
-  padding: 0em 1em;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-}
+
 .switch {
-  position: relative;
+  position: fixed;
+  z-index: 300;
+  right: 1em;
+  bottom: 1em;
   display: inline-block;
   width: 45px;
   height: 24px;

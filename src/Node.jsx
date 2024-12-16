@@ -1,33 +1,17 @@
 import React, { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
 import { RigidBody, BallCollider } from "@react-three/rapier";
-import { Text, Line } from "@react-three/drei";
+import { Line, Text } from "@react-three/drei";
 
-function Node({
+const Node = ({
   position,
+  scale = [1, 1, 1],
   label,
   children,
-  scale = [1, 1, 1],
   onClick,
   rotate = true,
-}) {
+}) => {
   const ref = useRef();
   const textRef = useRef();
-
-  // useFrame(() => {
-  //   if (ref.current) {
-  //     if (rotate) {
-  //       ref.current.rotation.y += 0.001;
-  //     } else {
-  //       ref.current.rotation.y = 0; // Reset rotation to flat position
-  //     }
-  //   }
-  //   if (textRef.current) {
-  //     if (!rotate) {
-  //       textRef.current.rotation.y = 0; // Reset rotation to flat position
-  //     }
-  //   }
-  // });
 
   return (
     <group position={position} ref={ref} scale={scale} onClick={onClick}>
@@ -67,11 +51,11 @@ function Node({
               color="cyan"
               lineWidth={1}
             />
-            {React.cloneElement(child, { rotate })}
+            {React.cloneElement(child, { key: index })}
           </group>
         ))}
     </group>
   );
-}
+};
 
 export default Node;

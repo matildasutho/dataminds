@@ -1,14 +1,12 @@
 import React from "react";
 import "./footer.css";
 
-function Footer() {
+function FooterText() {
   return (
-    <footer className="footer">
+    <footer className="footer-txt">
       <div>
         <h4>
-          DATA MINDS exhibition, at The Lock-Up, Newcastle. © 2024.
-          <br />
-          Built by{" "}
+          DATA MINDS exhibition, at The Lock-Up, Newcastle. © 2024. Built by{" "}
           <a
             href="https://girlonroad.tech/"
             target="_blank"
@@ -22,4 +20,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default FooterText;

@@ -1,11 +1,8 @@
-import React, { useState, useEffect, Suspense } from "react";
-import { useParams } from "react-router-dom";
-import RoyAnandaWrapper from "src/components/Artists/RoyAnandaWrapper.jsx";
-import BrieTrenerryWrapper from "src/components/Artists/BrieTrenerryWrapper.jsx";
-import HiballWrapper from "src/components/Artists/HiballWrapper.jsx";
-import GirlOnRoadWrapper from "src/components/Artists/GirlOnRoadWrapper.jsx";
-import JonRafmanWrapper from "src/components/Artists/JonRafmanWrapper.jsx";
-import "src/components/Artists/ArtistPage.css"; // Import CSS for fade-in effect
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import FooterText from "../Footer/FooterText";
+import "./Pages.css";
 
 const generateSlug = (title) => {
   return title
@@ -14,48 +11,52 @@ const generateSlug = (title) => {
     .replace(/\s+/g, "-");
 };
 
-const convertSlugToName = (slug) => {
-  return slug
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-};
-
-const artistComponents = {
-  RoyAnanda: RoyAnandaWrapper,
-  BrieTrenerry: BrieTrenerryWrapper,
-  Hiball: HiballWrapper,
-  GirlOnRoad: GirlOnRoadWrapper,
-  JonRafman: JonRafmanWrapper,
-  // Add other artists here
-};
-
-const ArtistPage = () => {
-  const { artistSlug, artworkSlug } = useParams();
-  const [Component, setComponent] = useState(null);
+const ArtistPage = ({ artists }) => {
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const [artist, setArtist] = useState(null);
+  const [loadedArtworks, setLoadedArtworks] = useState([]);
 
   useEffect(() => {
-    const artistName = convertSlugToName(artistSlug).replace(/\s+/g, "");
-    console.log("Loading component for artist:", artistName); // Debug statement
+    const foundArtist = artists.find(
+      (artist) => generateSlug(artist.artistName) === slug
+    );
+    setArtist(foundArtist);
+  }, [artists, slug]);
 
-    const component = artistComponents[artistName];
-    if (component) {
-      setComponent(() => component);
-    } else {
-      console.error("Artist component not found:", artistName);
-      setComponent(null);
+  useEffect(() => {
+    if (artist) {
+      const loadImages = async () => {
+        const loaded = await Promise.all(
+          artist.artworksCollection.items.map(async (artwork) => {
+            const images = artwork.imagesCollection.items.map(
+              (image) => image.url
+            );
+            return { ...artwork, images };
+          })
+        );
+        setLoadedArtworks(loaded);
+      };
+
+      loadImages();
     }
-  }, [artistSlug, artworkSlug]);
+  }, [artist]);
+
+  if (!artist) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div className="artist-page">
-      {Component ? (
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <Component artworkSlug={artworkSlug} />
-        </React.Suspense>
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div>
+      <div className="subpage">
+        <button className="back-button" onClick={() => navigate(-1)}>
+          Back
+        </button>
+        <h1>{artist.artistName}</h1>
+        <div className="rich-text">
+          {documentToReactComponents(artist.artistBiography.json)}
+        </div>
+      </div>
     </div>
   );
 };
