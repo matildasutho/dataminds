@@ -39,9 +39,17 @@ const ArtworkPage = ({ artists }) => {
     setFullPageImage(null);
   };
 
+  const handleBackClick = () => {
+    if (window.history.length <= 1) {
+      navigate("/");
+    } else {
+      navigate(-1);
+    }
+  };
+
   return (
     <div className="subpage">
-      <button className="back-button" onClick={() => navigate(-1)}>
+      <button className="back-button" onClick={handleBackClick}>
         Back
       </button>
       <h1>{artwork.title}</h1>

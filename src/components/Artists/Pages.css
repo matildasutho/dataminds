@@ -52,11 +52,13 @@ img {
   cursor: pointer;
   width: 100%;
 }
-.artwork-gallery img:hover {
+.left-column img:hover {
   filter: blur(2px);
+  cursor: pointer;
 }
 .full-page-image {
   position: fixed;
+  z-index: 400;
   top: 0;
   left: 0;
   width: 100%;
@@ -79,7 +81,7 @@ img {
   right: 1em;
   padding: 0.25em 0.5em;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 300;
 }
 
 .back-button:hover {

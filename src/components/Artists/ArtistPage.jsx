@@ -46,10 +46,18 @@ const ArtistPage = ({ artists }) => {
     return <div>Loading...</div>;
   }
 
+  const handleBackClick = () => {
+    if (window.history.length <= 1) {
+      navigate("/");
+    } else {
+      navigate(-1);
+    }
+  };
+
   return (
     <div>
       <div className="subpage">
-        <button className="back-button" onClick={() => navigate(-1)}>
+        <button className="back-button" onClick={handleBackClick}>
           Back
         </button>
         <h1>{artist.artistName}</h1>
