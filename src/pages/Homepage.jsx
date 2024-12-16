@@ -26,7 +26,7 @@ const Homepage = ({ artists, handleNodeClick }) => {
 
   return (
     <div>
-      <div>
+      <div className="view-toggle">
         <label className="switch">
           <input
             type="checkbox"
@@ -37,6 +37,13 @@ const Homepage = ({ artists, handleNodeClick }) => {
           />
           <span className="slider" aria-hidden="true"></span>
         </label>
+        <span className="view-label">
+          <h4>
+            {isListView
+              ? "Mind Map / [ List View ]"
+              : "[ Mind Map ] / List View"}
+          </h4>
+        </span>
       </div>
       {isListView ? (
         <ArtistListPage artists={artists} />
