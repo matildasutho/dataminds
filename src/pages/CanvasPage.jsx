@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
@@ -12,11 +12,38 @@ import "./CanvasPage.css";
 
 THREE.ColorManagement.legacyMode = false;
 
-const CanvasPage = ({ artists, handleNodeClick, isRandomView, toggleView }) => {
+const CanvasPage = ({ artists, handleNodeClick, isRandomView }) => {
+  const canvasRef = useRef();
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "c") {
+        captureCanvas();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
+
+  const captureCanvas = () => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const dataURL = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = dataURL;
+      link.download = "canvas_capture.png";
+      link.click();
+    }
+  };
+
   return (
     <>
       <Header />
       <Canvas
+        ref={canvasRef}
         shadows
         gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
         camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}

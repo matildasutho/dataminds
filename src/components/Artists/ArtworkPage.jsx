@@ -55,14 +55,25 @@ const ArtworkPage = ({ artists }) => {
       <h1>{artwork.title}</h1>
       <div className="flex-container">
         <div className="left-column">
-          {artwork.imagesCollection.items.map((image, index) => (
-            <img
-              key={index}
-              src={image.url}
-              alt={`${artwork.title} ${index + 1}`}
-              onClick={() => handleImageClick(image.url)}
-            />
-          ))}
+          {artwork.imagesCollection.items.map((item, index) => {
+            if (item.contentType.startsWith("video/")) {
+              return (
+                <video key={index} controls>
+                  <source src={item.url} type={item.contentType} />
+                  Your browser does not support the video tag.
+                </video>
+              );
+            } else {
+              return (
+                <img
+                  key={index}
+                  src={item.url}
+                  alt={`${artwork.title} ${index + 1}`}
+                  onClick={() => handleImageClick(item.url)}
+                />
+              );
+            }
+          })}
         </div>
         <div className="right-column">
           {documentToReactComponents(artwork.artworkDescription.json)}
