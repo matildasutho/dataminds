@@ -64,6 +64,10 @@ const ArtistPage = ({ artists }) => {
         <div className="rich-text">
           {documentToReactComponents(artist.artistBiography.json)}
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     </div>
   );

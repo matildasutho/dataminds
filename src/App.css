@@ -36,7 +36,22 @@ body::-webkit-scrollbar {
   z-index: 100;
   transform: translate(-50%, -50%);
 } */
-
+.label-box {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 145px;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  z-index: 100;
+  pointer-events: none;
+}
+.smll-txt {
+  font-size: 1rem;
+  line-height: 1.3rem;
+}
 p {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -74,7 +89,8 @@ h3 a {
   text-decoration: none;
 }
 h3:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  /* background-color: cyan; */
 }
 
 a {
@@ -86,6 +102,8 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   p {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
     max-width: 100vw;
   }
   h1 {

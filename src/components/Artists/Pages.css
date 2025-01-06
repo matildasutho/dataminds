@@ -43,7 +43,7 @@ img {
   /* font-size: 1.2rem;
   line-height: 1.8rem; */
   white-space: pre-wrap;
-  padding-bottom: 1em;
+  padding-bottom: 3em;
 }
 .artist-header {
   padding-left: 1em;
@@ -83,12 +83,20 @@ img {
   cursor: pointer;
   z-index: 300;
 }
-
+iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  /* margin-bottom: 3em; */
+}
 .back-button:hover {
   transition: 0.2s;
   box-shadow: 0 0 0.5em cyan;
 }
-
+.right-column p {
+  margin: 0;
+  width: 95%;
+}
 @media screen and (max-width: 768px) {
   .subpage {
     display: block;

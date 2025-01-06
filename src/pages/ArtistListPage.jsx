@@ -37,7 +37,9 @@ const ArtistListPage = ({ artists }) => {
                 <ul className="artwork-list">
                   <li>
                     <h3>
-                      <Link to={`/${artistSlug}`}>&#9658; Biography</Link>
+                      <Link to={`/${artistSlug}`}>
+                        &#9658; {artist.artistName}
+                      </Link>
                     </h3>
                   </li>
                   {artist.artworksCollection.items.map((artwork) => {

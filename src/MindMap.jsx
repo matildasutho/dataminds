@@ -136,13 +136,13 @@ const MindMap = ({ onNodeClick }) => {
                           artist.artworksCollection.items.length) *
                           Math.PI *
                           2
-                      ) * 2.4,
+                      ) * 2.8,
                       Math.sin(
                         (artworkIndex /
                           artist.artworksCollection.items.length) *
                           Math.PI *
                           2
-                      ) * 2.4,
+                      ) * 2.8,
                       0,
                     ];
                     return (

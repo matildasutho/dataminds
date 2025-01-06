@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { RigidBody, BallCollider } from "@react-three/rapier";
-import { Line, Text } from "@react-three/drei";
+import { Line, Text, Html } from "@react-three/drei";
+import Labels from "./Labels";
 
 const Node = ({
   position,
@@ -18,23 +19,10 @@ const Node = ({
       <RigidBody type="kinematicPosition" colliders={false}>
         <BallCollider args={[1]} />
         <mesh>
-          <sphereGeometry args={[0.05, 16, 16]} />
+          <sphereGeometry args={[0.09, 16, 16]} />
           <meshStandardMaterial color="cyan" metalness={0.48} roughness={0.4} />
         </mesh>
-        <Text
-          ref={textRef}
-          position={[-0.1, 0.1, 0]}
-          fontSize={0.163}
-          lineHeight={1.2}
-          color="blue"
-          anchorX="right"
-          anchorY="middle"
-          textAlign="left"
-          textDecoration="underline"
-          font="/Arial.ttf"
-        >
-          {label}
-        </Text>
+        <Labels label={label} />
       </RigidBody>
       {children &&
         React.Children.map(children, (child, index) => (

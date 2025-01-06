@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
 
 const generateSlug = (title) => {
   return title
@@ -47,6 +48,24 @@ const ArtworkPage = ({ artists }) => {
     }
   };
 
+  const renderOptions = {
+    renderNode: {
+      [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+        const { data } = node;
+        if (data.target.fields && data.target.fields.embedCode) {
+          return (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: data.target.fields.embedCode,
+              }}
+            />
+          );
+        }
+        return null;
+      },
+    },
+  };
+
   return (
     <div className="subpage">
       <button className="back-button" onClick={handleBackClick}>
@@ -55,6 +74,14 @@ const ArtworkPage = ({ artists }) => {
       <h1>{artwork.title}</h1>
       <div className="flex-container">
         <div className="left-column">
+          {artwork.artworkVideoEmbed && (
+            <div
+              dangerouslySetInnerHTML={{
+                __html:
+                  artwork.artworkVideoEmbed.json.content[0].content[0].value,
+              }}
+            />
+          )}
           {artwork.imagesCollection.items.map((item, index) => {
             if (item.contentType.startsWith("video/")) {
               return (
@@ -76,7 +103,10 @@ const ArtworkPage = ({ artists }) => {
           })}
         </div>
         <div className="right-column">
-          {documentToReactComponents(artwork.artworkDescription.json)}
+          {documentToReactComponents(
+            artwork.artworkDescription.json,
+            renderOptions
+          )}
         </div>
       </div>
       {fullPageImage && (

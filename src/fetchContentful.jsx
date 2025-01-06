@@ -23,6 +23,7 @@ const GET_ARTISTS = `
                                }
                            }
                            artworkDescription { json }
+                          artworkVideoEmbed { json }
                        }
                    }
                }
