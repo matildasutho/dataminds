@@ -46,7 +46,7 @@ const CanvasPage = ({ artists, handleNodeClick, isRandomView }) => {
         ref={canvasRef}
         shadows
         gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
+        camera={{ position: [0, 0, 15], fov: 32.5, near: 1, far: 100 }}
         onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
       >
         <ambientLight intensity={0.38} />

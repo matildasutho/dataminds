@@ -26,16 +26,6 @@ body::-webkit-scrollbar {
   height: 100vh;
 }
 
-/* .custom-cursor {
-  position: fixed;
-  width: 15px;
-  height: 15px;
-  background-color: blue;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 100;
-  transform: translate(-50%, -50%);
-} */
 .label-box {
   position: fixed;
   top: 10px;
@@ -87,10 +77,6 @@ h4 {
 h3 a {
   /* text-transform: uppercase; */
   text-decoration: none;
-}
-h3:hover {
-  /* text-decoration: underline; */
-  /* background-color: cyan; */
 }
 
 a {

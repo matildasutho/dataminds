@@ -4,6 +4,18 @@ import "./Instructions.css";
 function Instructions() {
   const [visible, setVisible] = useState(true);
   const [hidden, setHidden] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,9 +41,19 @@ function Instructions() {
         className={`instructions ${visible ? "visible" : "hidden"}`}
         onClick={handleClick}
       >
-        Hold Shift and Click + Drag to navigate the scene
-        <br />
-        Scroll to zoom in and out
+        {isMobile ? (
+          <>
+            Tap and drag to rotate the scene
+            <br />
+            Use two fingers to navigate. pinch to zoom
+          </>
+        ) : (
+          <>
+            Hold Shift + Click and Drag to navigate the scene
+            <br />
+            Scroll to zoom in and out
+          </>
+        )}
       </div>
     )
   );
