@@ -12,14 +12,14 @@ const Homepage = ({ artists, handleNodeClick }) => {
   useEffect(() => {
     // Save the view state to localStorage whenever it changes
     localStorage.setItem("isListView", isListView);
-    console.log(`isListView changed to: ${isListView}`);
+    // console.log(`isListView changed to: ${isListView}`);
   }, [isListView]);
 
   const toggleViewMode = () => {
     setIsListView((prev) => {
-      console.log("Previous isListView:", prev);
+      // console.log("Previous isListView:", prev);
       const newIsListView = !prev;
-      console.log("New isListView:", newIsListView);
+      // console.log("New isListView:", newIsListView);
       return newIsListView;
     });
   };

@@ -9,8 +9,8 @@ import {
 import Homepage from "./pages/Homepage";
 import ArtistPage from "./components/Artists/ArtistPage";
 import ArtworkPage from "./components/Artists/ArtworkPage";
-import Footer from "./components/Footer/Footer"; // Import the Footer component
-import { fetchData } from "./fetchContentful"; // Import the fetch function
+import Footer from "./components/Footer/Footer";
+import { fetchData } from "./fetchContentful";
 import "./App.css";
 
 const App = () => {
@@ -21,10 +21,10 @@ const App = () => {
     const fetchArtists = async () => {
       try {
         const data = await fetchData();
-        console.log("Fetched artists data:", data.artistCollection.items);
+        // console.log("Fetched artists data:", data.artistCollection.items);
         setArtists(data.artistCollection.items);
       } catch (error) {
-        console.error("Error fetching artists:", error);
+        // console.error("Error fetching artists:", error);
       }
     };
 
@@ -32,7 +32,7 @@ const App = () => {
   }, []);
 
   const handleNodeClick = (content) => {
-    console.log("Node clicked:", content); // Debug statement
+    // console.log("Node clicked:", content);
     if (content.pageUrl) {
       navigate(content.pageUrl);
     }
