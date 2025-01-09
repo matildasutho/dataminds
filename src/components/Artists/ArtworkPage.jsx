@@ -15,6 +15,7 @@ const ArtworkPage = ({ artists }) => {
   const navigate = useNavigate();
   const [artwork, setArtwork] = useState(null);
   const [fullPageImage, setFullPageImage] = useState(null);
+  const [fullCaption, setFullCaption] = useState(null);
 
   useEffect(() => {
     const foundArtist = artists.find(
@@ -32,12 +33,14 @@ const ArtworkPage = ({ artists }) => {
     return <div>Loading...</div>;
   }
 
-  const handleImageClick = (url) => {
+  const handleImageClick = (url, title) => {
     setFullPageImage(url);
+    setFullCaption(title);
   };
 
   const handleCloseFullPageImage = () => {
     setFullPageImage(null);
+    setFullCaption(null);
   };
 
   const handleBackClick = () => {
@@ -96,7 +99,7 @@ const ArtworkPage = ({ artists }) => {
                   key={index}
                   src={item.url}
                   alt={`${artwork.title} ${index + 1}`}
-                  onClick={() => handleImageClick(item.url)}
+                  onClick={() => handleImageClick(item.url, item.title)}
                 />
               );
             }
@@ -112,6 +115,7 @@ const ArtworkPage = ({ artists }) => {
       {fullPageImage && (
         <div className="full-page-image" onClick={handleCloseFullPageImage}>
           <img src={fullPageImage} alt="Full Page View" />
+          {fullCaption && <caption>{fullCaption}</caption>}
         </div>
       )}
     </div>

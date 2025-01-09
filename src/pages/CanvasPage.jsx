@@ -15,29 +15,29 @@ THREE.ColorManagement.legacyMode = false;
 const CanvasPage = ({ artists, handleNodeClick, isRandomView }) => {
   const canvasRef = useRef();
 
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (event.key === "c") {
-        captureCanvas();
-      }
-    };
+  // useEffect(() => {
+  //   const handleKeyPress = (event) => {
+  //     if (event.key === "c") {
+  //       captureCanvas();
+  //     }
+  //   };
 
-    window.addEventListener("keydown", handleKeyPress);
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, []);
+  //   window.addEventListener("keydown", handleKeyPress);
+  //   return () => {
+  //     window.removeEventListener("keydown", handleKeyPress);
+  //   };
+  // }, []);
 
-  const captureCanvas = () => {
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const dataURL = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-      link.href = dataURL;
-      link.download = "canvas_capture.png";
-      link.click();
-    }
-  };
+  // const captureCanvas = () => {
+  //   const canvas = canvasRef.current;
+  //   if (canvas) {
+  //     const dataURL = canvas.toDataURL("image/png");
+  //     const link = document.createElement("a");
+  //     link.href = dataURL;
+  //     link.download = "canvas_capture.png";
+  //     link.click();
+  //   }
+  // };
 
   return (
     <>
@@ -46,7 +46,7 @@ const CanvasPage = ({ artists, handleNodeClick, isRandomView }) => {
         ref={canvasRef}
         shadows
         gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-        camera={{ position: [0, 0, 15], fov: 32.5, near: 1, far: 100 }}
+        camera={{ position: [0, 0, 18], fov: 32.5, near: 1, far: 100 }}
         onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
       >
         <ambientLight intensity={0.38} />

@@ -19,6 +19,7 @@
   display: flex;
   flex-direction: row;
   gap: 1em;
+  padding-bottom: 10em;
 }
 .flex-container > * {
   max-width: 50%;
@@ -43,7 +44,7 @@ img {
   /* font-size: 1.2rem;
   line-height: 1.8rem; */
   white-space: pre-wrap;
-  padding-bottom: 3em;
+  padding-bottom: 1em;
 }
 .artist-header {
   padding-left: 1em;
@@ -63,17 +64,22 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(255, 255, 0, 0.95);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   overflow-x: scroll;
+  gap: 0.5em;
+  /* padding: 2em; */
 }
 
 .full-page-image img {
   width: auto;
-  max-height: calc(100% - 1em);
+  height: auto;
+  max-width: calc(100% - 2em);
+  max-height: calc(100% - 12em);
 }
 .back-button {
   position: fixed;
@@ -124,6 +130,9 @@ iframe {
   }
   .left-column {
     padding-bottom: 6rem;
+  }
+  .left-column img:hover {
+    filter: none;
   }
   .artwork-gallery img {
     width: 100%;

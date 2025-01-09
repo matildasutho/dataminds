@@ -18,7 +18,7 @@ const MindMap = ({ onNodeClick }) => {
   const titlePosition = [0, 0, 0];
   const radius = 3.6;
   const minDistance = 2.0; // Minimum distance between artists
-  const maxDistance = 5.0; // Maximum distance from the title
+  const maxDistance = 5.5; // Maximum distance from the title
   const { camera } = useThree();
   const cameraRef = useRef(camera);
 
